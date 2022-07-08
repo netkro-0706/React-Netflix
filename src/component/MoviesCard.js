@@ -15,19 +15,33 @@ const MoviesCard = ({ cardInfo }) => {
         navigate(`/movies/${cardInfo.id}`);
     }
 
+    function imgUrl() {
+        if (cardInfo.backdrop_path !== null) {
+            console.log("backdrop", cardInfo.backdrop_path);
+            return "url(" + `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${cardInfo.backdrop_path}` + ")"
+        }
+        else
+            return "";
+
+    }
+
     return (
         <div className='card movies_card'
             style={{
-                backgroundImage:
-                    "url(" + `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${cardInfo.backdrop_path}` + ")"
+                backgroundImage: imgUrl()
             }}
             onClick={goToDetail}>
 
             <div className='overlay'>
                 <div className='movies_card_top'>
                     <div className='card_top_poster'>
-                        <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${cardInfo.poster_path}`}
-                            width={100} alt="movie poster" />
+                        {cardInfo.poster_path
+                            ? <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${cardInfo.poster_path}`}
+                                width={100} alt="movie poster" />
+                            : <img src={`https://bflix.biz/no-poster.png`}
+                                width={100} alt="movie poster" />
+                            
+                        }
                     </div>
                     <div className='card_top_text'>
                         <h2>{cardInfo.title.length > 15
