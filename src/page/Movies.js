@@ -39,7 +39,7 @@ const Movies = () => {
       }
 
       setPopMovie(getData.data);
-      console.log("data", getData.data);
+      //console.log("data", getData.data);
 
       dispatch({ type: "LOAD_END" });
 
